@@ -1,0 +1,349 @@
+/* Playbook editor (Milestone 5): a readable document with a properties inspector. */
+
+.centered {
+  display: flex;
+  min-height: 60vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.workspace {
+  display: grid;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+  grid-template-columns: minmax(0, 1fr) var(--inspector-width);
+  background: var(--color-bg-app);
+}
+
+.documentScroll {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.document {
+  display: flex;
+  max-width: 820px;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-8) var(--space-12);
+}
+
+.inspector {
+  min-height: 0;
+  border-left: var(--border-width) solid var(--color-border);
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.notice {
+  margin: 0;
+}
+
+.muted {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.saveState {
+  max-width: 280px;
+  overflow: hidden;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.saveError {
+  color: var(--color-danger);
+}
+
+/* Inputs that read like document text; they show a frame only on hover and focus. */
+.title,
+.summary,
+.prose,
+.itemText,
+.stepTitle,
+.stepText {
+  width: 100%;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  resize: none;
+  field-sizing: content;
+}
+
+.title:hover,
+.summary:hover,
+.prose:hover,
+.itemText:hover,
+.stepTitle:hover,
+.stepText:hover {
+  border-color: var(--color-border);
+}
+
+.title:focus-visible,
+.summary:focus-visible,
+.prose:focus-visible,
+.itemText:focus-visible,
+.stepTitle:focus-visible,
+.stepText:focus-visible {
+  border-color: var(--color-accent);
+  background: var(--input-bg);
+  outline: none;
+}
+
+.title[readonly]:hover,
+.summary[readonly]:hover,
+.prose[readonly]:hover,
+.itemText[readonly]:hover,
+.stepTitle[readonly]:hover,
+.stepText[readonly]:hover {
+  border-color: transparent;
+}
+
+.title {
+  padding: var(--space-1) var(--space-2);
+  margin-left: calc(var(--space-2) * -1);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+}
+
+.summary {
+  min-height: 2lh;
+  padding: var(--space-1) var(--space-2);
+  margin-left: calc(var(--space-2) * -1);
+  color: var(--color-text-secondary);
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.sectionTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+}
+
+.hint {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.prose {
+  min-height: 3lh;
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+}
+
+.items {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: var(--space-1);
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.itemText {
+  min-height: 1lh;
+  flex: 1;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+}
+
+.origin {
+  flex-shrink: 0;
+  align-self: center;
+  padding: 0 var(--space-1-5);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-text);
+  font-size: var(--text-xs);
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.originEdited {
+  background: var(--color-warning-subtle);
+  color: var(--color-warning);
+}
+
+.steps {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.stepNumber {
+  display: inline-flex;
+  min-width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-secondary);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-semibold);
+}
+
+.stepTitle {
+  min-width: 0;
+  flex: 1;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+}
+
+.stepActions {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: var(--space-0-5);
+}
+
+.source {
+  padding-left: var(--space-8);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+}
+
+/* Links inside a line of text are underlined, not told apart by color alone. */
+.source a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.stepField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+  padding-left: var(--space-8);
+}
+
+.fieldLabel {
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+}
+
+.stepText {
+  min-height: 1lh;
+  padding: var(--space-1) var(--space-2);
+  margin-left: calc(var(--space-2) * -1);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  white-space: pre;
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-left: var(--space-8);
+  list-style: none;
+}
+
+.image {
+  position: relative;
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sources,
+.revisions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.revisions li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+}
+
+.revisionTitle {
+  font-weight: var(--weight-medium);
+}
+
+.revisionNote {
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  white-space: pre-wrap;
+}
+
+@media (max-width: 1100px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+
+  .document {
+    padding: var(--space-4) var(--space-4) var(--space-10);
+  }
+}

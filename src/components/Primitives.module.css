@@ -1,0 +1,36 @@
+.spinner {
+  display: inline-block;
+  flex-shrink: 0;
+  border: 1.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--radius-round);
+  opacity: 0.8;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 var(--space-1);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.kbdOnDark {
+  border-color: currentColor;
+  color: inherit;
+  opacity: 0.75;
+}

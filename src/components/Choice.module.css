@@ -1,0 +1,97 @@
+/* Segmented control */
+.segmented {
+  display: inline-flex;
+  padding: var(--space-0-5);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-secondary);
+  gap: var(--space-0-5);
+}
+
+.segment {
+  display: inline-flex;
+  min-width: 72px;
+  height: var(--control-height-sm);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1-5);
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.segment:hover {
+  color: var(--color-text);
+}
+
+.segment[aria-checked="true"] {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-popover);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .segment[aria-checked="true"] {
+  background: var(--button-bg-active);
+  box-shadow: none;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-5);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.tab {
+  position: relative;
+  display: inline-flex;
+  height: 34px;
+  align-items: center;
+  gap: var(--space-1-5);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+}
+
+.tab:hover {
+  color: var(--color-text);
+}
+
+.tab[aria-selected="true"] {
+  color: var(--color-text);
+}
+
+.tab[aria-selected="true"]::after {
+  position: absolute;
+  right: 0;
+  bottom: calc(-1 * var(--border-width));
+  left: 0;
+  height: var(--indicator-width);
+  background: var(--color-accent);
+  content: "";
+}
+
+.tab:focus-visible {
+  outline-offset: -2px;
+}
+
+.count {
+  min-width: 18px;
+  padding: 1px var(--space-1);
+  border-radius: var(--radius-sm);
+  background: var(--color-neutral-subtle);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}

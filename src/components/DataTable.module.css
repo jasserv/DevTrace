@@ -1,0 +1,115 @@
+.wrap {
+  width: 100%;
+  min-width: 0;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+  font-size: var(--text-md);
+}
+
+.th {
+  position: sticky;
+  z-index: var(--z-sticky);
+  top: 0;
+  height: var(--row-height-compact);
+  padding: 0 var(--space-3);
+  border-bottom: var(--border-width) solid var(--color-border);
+  background: var(--content-bg);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.th:first-child,
+.td:first-child {
+  padding-left: var(--table-inset, var(--space-3));
+}
+
+.th:last-child,
+.td:last-child {
+  padding-right: var(--table-inset, var(--space-3));
+}
+
+.end {
+  text-align: right;
+}
+
+.sortButton {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.sortButton:hover {
+  color: var(--color-text);
+}
+
+.sortIcon {
+  opacity: 0.5;
+}
+
+.sorted .sortIcon {
+  opacity: 1;
+}
+
+.td {
+  height: var(--row-height);
+  padding: 0 var(--space-3);
+  overflow: hidden;
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
+  color: var(--color-text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.secondary {
+  color: var(--color-text-secondary);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+}
+
+.row {
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.interactive:hover {
+  background: var(--color-fill-hover);
+}
+
+.interactive:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: calc(-1 * var(--focus-ring-width));
+}
+
+.selected,
+.selected:hover {
+  background: var(--color-fill-selected);
+}
+
+.skeleton {
+  display: block;
+  width: 60%;
+  height: 10px;
+  border-radius: var(--radius-xs);
+  background: var(--color-skeleton);
+}
+
+.emptyCell {
+  padding: 0;
+  overflow: visible;
+  border-bottom: 0;
+  white-space: normal;
+}

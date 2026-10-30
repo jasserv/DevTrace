@@ -1,0 +1,36 @@
+.anchor {
+  display: contents;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: var(--z-tooltip);
+  top: 0;
+  left: 0;
+  display: flex;
+  max-width: var(--tooltip-max-width);
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-tight);
+  pointer-events: none;
+  animation: appear var(--duration-normal) var(--ease-standard);
+  user-select: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}

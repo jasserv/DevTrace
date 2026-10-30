@@ -1,0 +1,119 @@
+.diff {
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-code-bg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-1-5) var(--space-3);
+  border-bottom: var(--border-width) solid var(--color-border);
+  background: var(--color-surface);
+  font-size: var(--text-sm);
+}
+
+.label {
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summary {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--space-2);
+  color: var(--color-text-secondary);
+}
+
+.added {
+  color: var(--color-diff-add-text);
+}
+
+.removed {
+  color: var(--color-diff-remove-text);
+}
+
+.scroll {
+  overflow: auto;
+}
+
+.table {
+  width: 100%;
+  color: var(--color-code-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  line-height: 1.55;
+}
+
+.lineNo {
+  width: 1%;
+  padding: 0 var(--space-2);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.sign {
+  width: 1%;
+  padding: 0 var(--space-1);
+  text-align: center;
+  user-select: none;
+}
+
+.text {
+  padding: 0 var(--space-3) 0 var(--space-1);
+  white-space: pre;
+  user-select: text;
+}
+
+.add {
+  background: var(--color-diff-add-bg);
+}
+
+.add .sign,
+.add .text {
+  color: var(--color-diff-add-text);
+}
+
+.add .lineNo {
+  background: var(--color-diff-add-gutter);
+}
+
+.remove {
+  background: var(--color-diff-remove-bg);
+}
+
+.remove .sign,
+.remove .text {
+  color: var(--color-diff-remove-text);
+}
+
+.remove .lineNo {
+  background: var(--color-diff-remove-gutter);
+}
+
+.none {
+  padding: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+/* Collapsed unchanged lines. */
+.gap {
+  background: var(--color-surface);
+}
+
+.gap .sign,
+.gap .text {
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+}

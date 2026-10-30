@@ -1,0 +1,315 @@
+/*
+ * DevTrace design tokens.
+ *
+ * The single source of truth for color, typography, spacing, corner radius, sizing,
+ * elevation, motion and layering. Components reference these variables only; literal
+ * colors and radii are permitted in this file alone (enforced by scripts/check-tokens.mjs).
+ *
+ * Structure
+ *   1. Theme-independent scales (type, space, radius, size, motion, z-index)
+ *   2. Light theme (default) - specification palette + semantic roles
+ *   3. Dark theme - specification palette + semantic roles
+ *
+ * Accessibility notes
+ *   - The specification accents (#007AFF / #0A84FF) are used for indicators, focus rings and
+ *     selection. White text on them is below WCAG AA (4.0:1 / 3.6:1), so filled buttons use
+ *     --color-accent-fill (#0071E3, 4.7:1) and accent-colored text uses --color-accent-text.
+ *   - Status is never conveyed by color alone: components pair these colors with an icon
+ *     and a text label.
+ */
+
+:root {
+  /* 1. Typography ------------------------------------------------------------------- */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text",
+    "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display",
+    "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Cascadia Code", Consolas,
+    "Liberation Mono", Menlo, monospace;
+
+  --text-2xs: 10.5px; /* keyboard hints, counters */
+  --text-xs: 11px; /* captions, group labels */
+  --text-sm: 12px; /* metadata, table headers */
+  --text-md: 13px; /* default UI and body text */
+  --text-lg: 14px; /* toolbar title, emphasized body */
+  --text-xl: 17px; /* compact page headings */
+  --text-2xl: 22px; /* document titles */
+  --text-mono: 12.5px; /* commands, logs, configuration */
+
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-normal: 1.45;
+  --leading-relaxed: 1.6;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  --tracking-tight: -0.012em;
+  --tracking-normal: 0;
+  --tracking-caps: 0.04em;
+
+  /* Spacing (4px grid) ------------------------------------------------------------ */
+  --space-0: 0;
+  --space-px: 1px;
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-1-5: 6px;
+  --space-2: 8px;
+  --space-2-5: 10px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Corner radius: square or very subtle ------------------------------------------ */
+  --radius-none: 0; /* panels, workspace sections, tables */
+  --radius-xs: 2px; /* indicators */
+  --radius-sm: 3px; /* badges, kbd, checkboxes */
+  --radius-md: 4px; /* buttons, inputs, navigation items */
+  --radius-lg: 6px; /* menus, popovers, dialogs */
+  --radius-xl: 8px; /* maximum; only for large containers when justified */
+  --radius-round: 999px; /* circular status dots only - never buttons */
+
+  /* Sizes --------------------------------------------------------------------------- */
+  --control-height-sm: 24px;
+  --control-height-md: 28px;
+  --control-height-lg: 32px;
+  --row-height: 34px;
+  --row-height-compact: 30px;
+  --toolbar-height: 44px;
+  --sidebar-width: 232px;
+  --sidebar-width-collapsed: 52px;
+  --inspector-width: 320px;
+  --timeline-width: 296px;
+  --icon-xs: 12px;
+  --icon-sm: 14px;
+  --icon-md: 16px;
+  --icon-lg: 20px;
+  --icon-xl: 24px;
+  --border-width: 1px;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 1px;
+  --indicator-width: 2px;
+  --content-max-width: 1320px;
+  --reading-width: 760px;
+  --dialog-width-sm: 420px;
+  --dialog-width-md: 520px;
+  --menu-min-width: 220px;
+  --tooltip-max-width: 280px;
+
+  /* Motion: restrained, never required to understand state ------------------------- */
+  --duration-fast: 90ms;
+  --duration-normal: 150ms;
+  --duration-slow: 220ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Layering ------------------------------------------------------------------------ */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-sidebar: 20;
+  --z-dropdown: 100;
+  --z-toast: 300;
+  --z-tooltip: 400;
+}
+
+/* 2. Light theme (default) ----------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Specification palette */
+  --color-bg-app: #f5f5f7;
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f0f0f2;
+  --color-text: #1d1d1f;
+  /* The specification's secondary text #6e6e73 reaches only 4.45:1 on its own secondary surface
+     (#f0f0f2), 4.46:1 on selected rows and 4.15:1 on the screenshot viewer, below WCAG AA (4.5:1).
+     This slightly darker gray keeps the look and passes everywhere (5.25:1 on #f0f0f2). */
+  --color-text-secondary: #636368;
+  --color-border: #e5e5e7;
+  --color-accent: #007aff;
+  --color-success: #248a3d;
+
+  /* Extended neutrals */
+  --color-text-tertiary: #86868b; /* placeholders and disabled text only */
+  --color-border-strong: #d2d2d7; /* control outlines */
+  --color-border-subtle: #ededef;
+
+  /* Accent roles */
+  --color-accent-fill: #0071e3;
+  --color-accent-fill-hover: #0062c4;
+  --color-accent-fill-active: #0056ad;
+  --color-accent-text: #0066cc;
+  --color-accent-subtle: rgba(0, 122, 255, 0.1);
+  --color-on-accent: #ffffff;
+
+  /* Semantic status (text-safe on surfaces) */
+  --color-success-subtle: rgba(36, 138, 61, 0.11);
+  --color-warning: #b25000;
+  --color-warning-subtle: rgba(201, 102, 0, 0.12);
+  --color-danger: #d70015;
+  --color-danger-subtle: rgba(215, 0, 21, 0.08);
+  --color-danger-fill: #d70015;
+  --color-danger-fill-hover: #b80012;
+  --color-info: #0066cc;
+  --color-info-subtle: rgba(0, 122, 255, 0.09);
+  --color-neutral-subtle: rgba(0, 0, 0, 0.05);
+  --color-recording: #d70015;
+
+  /* Interaction fills */
+  --color-fill-hover: rgba(0, 0, 0, 0.04);
+  --color-fill-pressed: rgba(0, 0, 0, 0.075);
+  --color-fill-selected: rgba(0, 122, 255, 0.1);
+  --color-fill-selected-strong: rgba(0, 122, 255, 0.16);
+  --color-nav-active: rgba(0, 0, 0, 0.065);
+  --color-focus-ring: #007aff;
+  --color-overlay: rgba(0, 0, 0, 0.3);
+  --color-scrollbar: rgba(0, 0, 0, 0.22);
+  --color-skeleton: #ebebed;
+
+  /* Technical content */
+  --color-code-bg: #f5f5f7;
+  --color-code-text: #1d1d1f;
+  --color-diff-add-bg: rgba(36, 138, 61, 0.1);
+  --color-diff-add-text: #1a6b2f;
+  --color-diff-add-gutter: rgba(36, 138, 61, 0.18);
+  --color-diff-remove-bg: rgba(215, 0, 21, 0.07);
+  --color-diff-remove-text: #b0000f;
+  --color-diff-remove-gutter: rgba(215, 0, 21, 0.14);
+  --color-viewer-bg: #e8e8ed;
+  --color-highlight: #007aff;
+  --color-highlight-fill: rgba(0, 122, 255, 0.12);
+
+  /* Brand mark */
+  --color-mark-bg: #1d1d1f;
+  --color-mark-fg: #ffffff;
+
+  /* Elevation: overlays only */
+  --shadow-popover: 0 0 0 1px rgba(0, 0, 0, 0.07), 0 6px 20px rgba(0, 0, 0, 0.12);
+  --shadow-dialog: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 18px 50px rgba(0, 0, 0, 0.2);
+  --shadow-control: 0 1px 1px rgba(0, 0, 0, 0.04);
+
+  /* Component roles */
+  --sidebar-bg: var(--color-bg-app);
+  --toolbar-bg: var(--color-surface);
+  --content-bg: var(--color-surface);
+  --panel-bg: var(--color-bg-app);
+  --inspector-bg: var(--color-surface);
+  --input-bg: var(--color-surface);
+  --button-bg: var(--color-surface);
+  --button-bg-hover: #f5f5f7;
+  --button-bg-active: #ebebed;
+  --menu-bg: var(--color-surface);
+  --tooltip-bg: #1d1d1f;
+  --tooltip-text: #f5f5f7;
+}
+
+/* 3. Dark theme ----------------------------------------------------------------------- */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Specification palette */
+  --color-bg-app: #1c1c1e;
+  --color-surface: #2c2c2e;
+  --color-surface-secondary: #242426;
+  --color-text: #f5f5f7;
+  --color-text-secondary: #aeaeb2;
+  --color-border: #3a3a3c;
+  --color-accent: #0a84ff;
+  --color-success: #30d158;
+
+  /* Extended neutrals */
+  --color-text-tertiary: #8e8e93;
+  --color-border-strong: #4a4a4d;
+  --color-border-subtle: #333335;
+
+  /* Accent roles */
+  --color-accent-fill: #0071e3;
+  --color-accent-fill-hover: #0062c4;
+  --color-accent-fill-active: #0056ad;
+  --color-accent-text: #409cff;
+  --color-accent-subtle: rgba(10, 132, 255, 0.18);
+  --color-on-accent: #ffffff;
+
+  /* Semantic status */
+  --color-success-subtle: rgba(48, 209, 88, 0.15);
+  --color-warning: #ff9f0a;
+  --color-warning-subtle: rgba(255, 159, 10, 0.15);
+  --color-danger: #ff6961;
+  --color-danger-subtle: rgba(255, 105, 97, 0.14);
+  --color-danger-fill: #d70015;
+  --color-danger-fill-hover: #b80012;
+  --color-info: #409cff;
+  --color-info-subtle: rgba(10, 132, 255, 0.16);
+  --color-neutral-subtle: rgba(255, 255, 255, 0.07);
+  --color-recording: #ff453a;
+
+  /* Interaction fills */
+  --color-fill-hover: rgba(255, 255, 255, 0.055);
+  --color-fill-pressed: rgba(255, 255, 255, 0.1);
+  --color-fill-selected: rgba(10, 132, 255, 0.2);
+  --color-fill-selected-strong: rgba(10, 132, 255, 0.28);
+  --color-nav-active: rgba(255, 255, 255, 0.08);
+  --color-focus-ring: #0a84ff;
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-scrollbar: rgba(255, 255, 255, 0.22);
+  --color-skeleton: #3a3a3c;
+
+  /* Technical content */
+  --color-code-bg: #242426;
+  --color-code-text: #f5f5f7;
+  --color-diff-add-bg: rgba(48, 209, 88, 0.13);
+  --color-diff-add-text: #6ee08c;
+  --color-diff-add-gutter: rgba(48, 209, 88, 0.22);
+  --color-diff-remove-bg: rgba(255, 105, 97, 0.13);
+  --color-diff-remove-text: #ff8f88;
+  --color-diff-remove-gutter: rgba(255, 105, 97, 0.22);
+  --color-viewer-bg: #1c1c1e;
+  --color-highlight: #0a84ff;
+  --color-highlight-fill: rgba(10, 132, 255, 0.18);
+
+  /* Brand mark */
+  --color-mark-bg: #f5f5f7;
+  --color-mark-fg: #1c1c1e;
+
+  /* Elevation */
+  --shadow-popover: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 8px 26px rgba(0, 0, 0, 0.5);
+  --shadow-dialog: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 20px 56px rgba(0, 0, 0, 0.6);
+  --shadow-control: none;
+
+  /* Component roles */
+  --sidebar-bg: var(--color-bg-app);
+  --toolbar-bg: var(--color-surface);
+  --content-bg: var(--color-surface);
+  --panel-bg: var(--color-surface-secondary);
+  --inspector-bg: var(--color-surface);
+  --input-bg: var(--color-surface-secondary);
+  --button-bg: rgba(255, 255, 255, 0.07);
+  --button-bg-hover: rgba(255, 255, 255, 0.11);
+  --button-bg-active: rgba(255, 255, 255, 0.15);
+  --menu-bg: #323234;
+  --tooltip-bg: #3a3a3c;
+  --tooltip-text: #f5f5f7;
+}
+
+/* Motion preferences: OS setting or the in-app "Reduce motion" setting. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+  }
+}
+
+[data-reduce-motion="true"] {
+  --duration-fast: 0ms;
+  --duration-normal: 0ms;
+  --duration-slow: 0ms;
+}

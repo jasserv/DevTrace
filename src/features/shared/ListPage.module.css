@@ -1,0 +1,133 @@
+/* Shared layout for list workspaces (Sessions, Playbooks, Change History, Library, Projects). */
+
+.container {
+  display: flex;
+  max-width: var(--content-max-width);
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6) var(--space-10);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.search {
+  width: 300px;
+}
+
+.searchSmall {
+  height: var(--control-height-sm);
+}
+
+.count {
+  margin-left: auto;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Full-bleed table aligned with the page padding. */
+.table {
+  --table-inset: var(--space-6);
+  margin: 0 calc(-1 * var(--space-6));
+}
+
+.primaryCell {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.primaryText {
+  overflow: hidden;
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+  text-overflow: ellipsis;
+}
+
+.secondaryText {
+  overflow: hidden;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  text-overflow: ellipsis;
+}
+
+.muted {
+  color: var(--color-text-secondary);
+}
+
+.tabs {
+  margin: 0 calc(-1 * var(--space-6));
+  padding: 0 var(--space-6);
+}
+
+/* Explanatory content inside empty states */
+.facts {
+  display: grid;
+  max-width: 560px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-6);
+  margin-top: var(--space-3);
+  text-align: left;
+}
+
+.fact {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-tight);
+}
+
+.fact svg {
+  margin-top: 1px;
+  color: var(--color-text-tertiary);
+}
+
+.legend {
+  display: flex;
+  max-width: 640px;
+  flex-direction: column;
+  gap: var(--space-2-5);
+  margin-top: var(--space-3);
+  text-align: left;
+}
+
+.legendRow {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.legendRow > :first-child {
+  justify-self: start;
+}
+
+.facets {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.facetsLabel {
+  margin-right: var(--space-1);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+/* Status badges in a table cell (status plus, for example, Out of date). */
+.statusCell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+}

@@ -1,0 +1,93 @@
+[package]
+name = "devtrace"
+version = "0.1.0"
+description = "DevTrace - local-first engineering workflow capture and versioned technical playbooks"
+authors = ["DevTrace contributors"]
+edition = "2024"
+rust-version = "1.90"
+
+[lib]
+# The `_lib` suffix keeps the library name distinct from the binary name (cargo issue #8519 on Windows).
+name = "devtrace_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+# tray-icon: recording indicator and controls while DevTrace is in the background.
+# Pinned to 2.12.x: PDF export uses WebView2 types through `with_webview`, and Tauri may move to
+# a newer webview2-com in a minor release (the `webview2-com` line below must match wry's).
+tauri = { version = "~2.12", features = ["tray-icon"] }
+# Used from Rust only (reveal the workspace folder); no opener permission is granted to the webview.
+tauri-plugin-opener = "2"
+# Global capture shortcut, registered from Rust only while recording (no webview permission).
+tauri-plugin-global-shortcut = "2"
+# The system file dialogs (choose a configuration file to watch, save and open workspace backups),
+# opened from Rust only (no webview permission): the webview never supplies a file path.
+tauri-plugin-dialog = "2"
+# Screen and window capture (GDI BitBlt for displays, PrintWindow for windows on Windows).
+xcap = "0.9"
+# Pixel work on evidence: encoding captures as PNG and burning in redactions. Same major
+# version as xcap uses, restricted to the accepted evidence formats.
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "webp"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# Bundled SQLite keeps the database engine version identical on every machine.
+rusqlite = { version = "0.40", features = ["bundled"] }
+thiserror = "2"
+uuid = { version = "1.28", features = ["v7"] }
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+# Evidence storage: content hashing, image header parsing (type + dimensions, no decoding),
+# and decoding of percent-encoded IPC headers. Only the accepted image formats are compiled in.
+sha2 = "0.11"
+imagesize = { version = "0.15", default-features = false, features = ["png", "jpeg", "gif", "webp"] }
+percent-encoding = "2"
+# Screenshots embedded in self-contained HTML exports (already in the dependency tree via Tauri).
+base64 = "0.22"
+# Workspace backups: one zip file (deflate only; flate2 with the pure-Rust miniz_oxide backend
+# that the image stack already compiles). Reading validates every entry name and size.
+zip = { version = "9", default-features = false, features = ["deflate-flate2"] }
+flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[target.'cfg(windows)'.dependencies]
+# Window capture without border artifacts (src/capture/win_window.rs) and the paper size of the
+# user's region for PDF export. Same version that xcap and wry already compile.
+windows = { version = "0.62", features = [
+  "Win32_Foundation",
+  "Win32_Globalization",
+  "Win32_Graphics_Dwm",
+  "Win32_Graphics_Gdi",
+  "Win32_Storage_Xps",
+  "Win32_UI_WindowsAndMessaging",
+] }
+# PDF export: WebView2 `PrintToPdf` through Tauri's `with_webview`. Must be the version wry uses.
+webview2-com = "0.39"
+
+# Image encoding and decoding is very slow without optimizations. Optimize only these crates in
+# development builds so capturing a screenshot in `tauri dev` takes milliseconds, not seconds.
+[profile.dev.package.image]
+opt-level = 3
+[profile.dev.package.png]
+opt-level = 3
+[profile.dev.package.fdeflate]
+opt-level = 3
+[profile.dev.package.miniz_oxide]
+opt-level = 3
+[profile.dev.package.crc32fast]
+opt-level = 3
+[profile.dev.package.simd-adler32]
+opt-level = 3
+[profile.dev.package.xcap]
+opt-level = 3
+
+# See https://tauri.app/concept/size/#cargo-configuration
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true

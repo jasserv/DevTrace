@@ -1,0 +1,118 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1-5);
+  height: var(--control-height-md);
+  padding: 0 var(--space-3);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-none);
+  white-space: nowrap;
+  user-select: none;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sizes */
+.sm {
+  height: var(--control-height-sm);
+  gap: var(--space-1);
+  padding: 0 var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.lg {
+  height: var(--control-height-lg);
+  padding: 0 var(--space-4);
+}
+
+.iconOnly {
+  padding: 0;
+  aspect-ratio: 1;
+}
+
+/* Variants */
+.primary {
+  background: var(--color-accent-fill);
+  color: var(--color-on-accent);
+}
+
+.primary:not(:disabled, [aria-disabled="true"]):hover {
+  background: var(--color-accent-fill-hover);
+}
+
+.primary:not(:disabled, [aria-disabled="true"]):active {
+  background: var(--color-accent-fill-active);
+}
+
+.secondary {
+  border-color: var(--color-border-strong);
+  background: var(--button-bg);
+  box-shadow: var(--shadow-control);
+}
+
+.secondary:not(:disabled, [aria-disabled="true"]):hover {
+  background: var(--button-bg-hover);
+}
+
+.secondary:not(:disabled, [aria-disabled="true"]):active {
+  background: var(--button-bg-active);
+}
+
+/* Toggle buttons (aria-pressed) show their "on" state with the accent tint. */
+.secondary[aria-pressed="true"],
+.secondary[aria-pressed="true"]:not(:disabled, [aria-disabled="true"]):hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-text);
+}
+
+.ghost {
+  color: var(--color-text-secondary);
+}
+
+.ghost:not(:disabled, [aria-disabled="true"]):hover {
+  background: var(--color-fill-hover);
+  color: var(--color-text);
+}
+
+.ghost:not(:disabled, [aria-disabled="true"]):active,
+.ghost[aria-pressed="true"],
+.ghost[aria-expanded="true"] {
+  background: var(--color-fill-pressed);
+  color: var(--color-text);
+}
+
+.danger {
+  background: var(--color-danger-fill);
+  color: var(--color-on-accent);
+}
+
+.danger:not(:disabled, [aria-disabled="true"]):hover {
+  background: var(--color-danger-fill-hover);
+}
+
+/* Unavailable / disabled: dimmed, no hover feedback. aria-disabled keeps it focusable so
+   the tooltip can explain why it is unavailable. */
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity: 0.45;
+}
+
+.button[aria-busy="true"] {
+  opacity: 0.75;
+}

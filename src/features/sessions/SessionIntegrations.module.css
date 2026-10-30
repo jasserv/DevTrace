@@ -1,0 +1,114 @@
+/* Opt-in integrations in the session inspector (Milestone 8). */
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.groupTitle {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.text {
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  font-size: var(--text-xs);
+}
+
+.dot {
+  width: var(--space-2);
+  height: var(--space-2);
+  border-radius: var(--radius-round);
+  background: var(--color-success);
+}
+
+.snippet {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-1);
+  padding: var(--space-1-5) var(--space-1-5) var(--space-1-5) var(--space-2);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-code-bg);
+}
+
+.snippet code {
+  min-width: 0;
+  flex: 1;
+  color: var(--color-code-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+  user-select: text;
+  white-space: pre-wrap;
+}
+
+.watches {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+  list-style: none;
+}
+
+.watch {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.watchText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-0-5);
+  font-size: var(--text-xs);
+}
+
+.watchName {
+  font-weight: var(--weight-medium);
+}
+
+.path {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+}
+
+.error {
+  color: var(--color-danger);
+  font-size: var(--text-xs);
+}
+
+.output {
+  max-height: 260px;
+  margin: 0;
+  padding: var(--space-2);
+  overflow: auto;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-code-bg);
+  color: var(--color-code-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  user-select: text;
+  white-space: pre;
+}

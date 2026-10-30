@@ -1,0 +1,143 @@
+.page {
+  display: flex;
+  height: 100vh;
+  min-width: 0;
+  flex-direction: column;
+  background: var(--content-bg);
+}
+
+.toolbar {
+  display: flex;
+  height: var(--toolbar-height);
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-3) 0 var(--space-2);
+  border-bottom: var(--border-width) solid var(--color-border);
+  background: var(--toolbar-bg);
+  user-select: none;
+}
+
+.navButtons {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-0-5);
+}
+
+.separator {
+  width: var(--border-width);
+  height: 18px;
+  margin: 0 var(--space-1);
+  background: var(--color-border);
+}
+
+.breadcrumbs {
+  min-width: 0;
+  flex: 1;
+}
+
+.crumbs {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.crumb {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-text-secondary);
+  font-size: var(--text-md);
+  white-space: nowrap;
+}
+
+.crumb a {
+  color: inherit;
+}
+
+.crumb a:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.crumbSeparator {
+  color: var(--color-text-tertiary);
+}
+
+.title {
+  overflow: hidden;
+  color: var(--color-text);
+  font-size: var(--text-lg);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.body {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+}
+
+.main {
+  min-width: 0;
+  flex: 1;
+  overflow: auto;
+}
+
+.main:focus-visible {
+  outline-offset: -2px;
+}
+
+.fill {
+  display: flex;
+  overflow: hidden;
+}
+
+/* Section */
+.section {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.sectionHeader {
+  display: flex;
+  min-height: 28px;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.sectionTitle {
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-normal);
+}
+
+.sectionCount {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.sectionAction {
+  display: inline-flex;
+  margin-left: auto;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-accent-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}

@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Frontend build output
+dist/
+dist-ssr/
+*.local
+*.tsbuildinfo
+
+# Rust / Tauri build output
+src-tauri/target/
+src-tauri/gen/schemas/
+
+# Test and tooling artifacts
+coverage/
+test-results/
+.e2e/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Local DevTrace data must never be committed (screenshots, logs, databases)
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.sw?

@@ -1,0 +1,172 @@
+.container {
+  display: flex;
+  max-width: 800px;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-6) var(--space-8) var(--space-12);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.groupHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.groupTitle {
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-normal);
+}
+
+.groupDescription {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.row {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-2-5) 0;
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.rowStack {
+  align-items: flex-start;
+}
+
+.rowText {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-0-5);
+}
+
+.rowLabel {
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+}
+
+.rowHint {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.switchRow {
+  flex: 1;
+}
+
+.inlineForm {
+  display: flex;
+  width: 340px;
+  flex-shrink: 0;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.inlineForm > :first-child {
+  flex: 1;
+}
+
+.path {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+}
+
+.fact {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  color: var(--color-text);
+}
+
+.fact svg {
+  margin-top: 2px;
+  color: var(--color-success);
+}
+
+.shortcuts {
+  width: 100%;
+}
+
+.shortcuts td {
+  height: 34px;
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
+}
+
+.shortcuts tr:last-child td {
+  border-bottom: 0;
+}
+
+.shortcutKeys {
+  width: 180px;
+  text-align: right;
+}
+
+.keys {
+  display: inline-flex;
+  gap: var(--space-1);
+}
+
+.about {
+  padding: var(--space-2) 0;
+}
+
+.integrations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+.integration {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+}
+
+.integrationName {
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+}
+
+.integrationUnavailable {
+  color: var(--color-warning);
+  font-weight: var(--weight-regular);
+}
+
+.integrationText {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.restoreDetails {
+  margin: var(--space-3) 0;
+}
