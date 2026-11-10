@@ -13,7 +13,8 @@ param(
   [Parameter(Mandatory = $true)][ValidateSet("windows", "probe", "hotkey", "target", "changing", "pdf")][string]$Action,
   [int]$ProcessId = 0,
   [string]$Path = "",
-  [string]$Out = ""
+  [string]$Out = "",
+  [int]$PageIndex = 0
 )
 $ErrorActionPreference = "Stop"
 
@@ -132,7 +133,7 @@ switch ($Action) {
     }
     $file = Wait-Operation ([Windows.Storage.StorageFile]::GetFileFromPathAsync($Path)) ([Windows.Storage.StorageFile])
     $document = Wait-Operation ([Windows.Data.Pdf.PdfDocument]::LoadFromFileAsync($file)) ([Windows.Data.Pdf.PdfDocument])
-    $page = $document.GetPage(0)
+    $page = $document.GetPage([uint32]$PageIndex)
     $options = New-Object Windows.Data.Pdf.PdfPageRenderOptions
     $options.DestinationWidth = [uint32]($page.Size.Width * 1.5)
     $stream = New-Object Windows.Storage.Streams.InMemoryRandomAccessStream
